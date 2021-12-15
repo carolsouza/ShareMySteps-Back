@@ -1,0 +1,6 @@
+HOST=Host/IP do server
+PORT=Porta do banco principal da aplicação
+USERNAMEDB=Username usado no BD da Dash
+PASSWORD=Senha do BD da Dash
+DATABASE=Nome do BD da Dash
+SERVERPORT=Porta em que o servidor vai rodar
