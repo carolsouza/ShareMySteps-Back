@@ -1,22 +1,22 @@
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn} from "typeorm";
 
 @Entity()
-export class User {
+export class Users {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({default: ''})
-    firstName: string;
-
-    @Column({default: ''})
-    lastName: string;
+    name: string;
 
     @Column({unique: true, default: ''})
     email: string;
 
-    @CreateDateColumn({ type: 'timestamp'})
-    birthday: Date;
+    @Column({unique: true, default: ''})
+    cellphone: string;
+
+    @Column()
+    password: string;
 
     @CreateDateColumn({ type: 'timestamp'})
     creationDate: Date;
