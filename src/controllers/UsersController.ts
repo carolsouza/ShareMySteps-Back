@@ -25,11 +25,13 @@ export const getUser = async (request: Request, response: Response) => {
 
 
 export const saveUser = async (request: Request, response: Response) => {
-    // console.log(request.body)
-    const hashPassword = await bcrypt.hash(request.body.pass, 10);
+    console.log(request.body)
+    const hashPassword = await bcrypt.hash(request.body.userData.password, 10);
     const users = new Users();
-    users.name = request.body.nome;
+    users.name = request.body.userData.name;
     users.password = hashPassword;
+    users.cellphone = request.body.userData.cellphone;
+    users.email = request.body.userData.email;
 
     const user = await getRepository(Users).save(users);    
     response.json(user);
@@ -67,18 +69,10 @@ export const removeUser = async(request: Request, response: Response) => {
 }
 
 export const verificaLogin = async(request: Request, response: Response) => {
-    /*
-    const users = await getRepository(Users).findOne({
-        where: {
-            user: request.body.user
-        }
-    })
-    */
-
-    if (request.body.data) {
-
+    
+    if (request.body) {
         
-        const values = request.body.data.values;
+        const values = request.body;
         const users = await getRepository(Users).findOne({
             where: {
                 email: values.email
@@ -89,7 +83,7 @@ export const verificaLogin = async(request: Request, response: Response) => {
             return response.status(400).send('Nenhum usuário encontrado!')
         }
     
-        const isValid = await bcrypt.compare(values.senha, users.password)
+        const isValid = await bcrypt.compare(values.pass, users.password)
     
         if(!isValid){
             return response.sendStatus(401)

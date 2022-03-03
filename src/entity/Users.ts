@@ -12,11 +12,11 @@ export class Users {
     @Column({unique: true, default: ''})
     email: string;
 
+    @Column({unique: true, default: ''})
+    cellphone: string;
+
     @Column()
     password: string;
-
-    @CreateDateColumn({ type: 'timestamp'})
-    birthday: Date;
 
     @CreateDateColumn({ type: 'timestamp'})
     creationDate: Date;

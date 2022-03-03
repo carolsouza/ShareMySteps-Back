@@ -3,7 +3,7 @@ import { getUsers, saveUser, verificaLogin } from "./controllers/UsersController
 
 const routes = Router();
 
-routes.get('/auth', verificaLogin)
+routes.post('/auth', verificaLogin)
 routes.post('/users', saveUser)
 
 
